@@ -8,20 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		A3A0E81023B8CD2C00F5527B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E80F23B8CD2C00F5527B /* AppDelegate.m */; };
-		A3A0E81323B8CD2C00F5527B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E81223B8CD2C00F5527B /* SceneDelegate.m */; };
 		A3A0E81623B8CD2C00F5527B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E81523B8CD2C00F5527B /* ViewController.m */; };
 		A3A0E81923B8CD2C00F5527B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3A0E81723B8CD2C00F5527B /* Main.storyboard */; };
 		A3A0E81B23B8CD2F00F5527B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3A0E81A23B8CD2F00F5527B /* Assets.xcassets */; };
 		A3A0E81E23B8CD2F00F5527B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3A0E81C23B8CD2F00F5527B /* LaunchScreen.storyboard */; };
 		A3A0E82123B8CD2F00F5527B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E82023B8CD2F00F5527B /* main.m */; };
+		A3DEA12E23B8F99A005A4EC6 /* PageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12A23B8F99A005A4EC6 /* PageHeaderView.m */; };
+		A3DEA12F23B8F99A005A4EC6 /* FirstPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12C23B8F99A005A4EC6 /* FirstPageView.m */; };
+		A3DEA13023B8F99A005A4EC6 /* SecondPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12D23B8F99A005A4EC6 /* SecondPageView.m */; };
+		A3DEA13323B902DF005A4EC6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A3A0E80B23B8CD2C00F5527B /* WXMenuPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WXMenuPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A0E80E23B8CD2C00F5527B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A3A0E80F23B8CD2C00F5527B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A3A0E81123B8CD2C00F5527B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		A3A0E81223B8CD2C00F5527B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 		A3A0E81423B8CD2C00F5527B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		A3A0E81523B8CD2C00F5527B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A3A0E81823B8CD2C00F5527B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -29,6 +30,15 @@
 		A3A0E81D23B8CD2F00F5527B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A3A0E81F23B8CD2F00F5527B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3A0E82023B8CD2F00F5527B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A3DEA12723B8F888005A4EC6 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
+		A3DEA12823B8F99A005A4EC6 /* FirstPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstPageView.h; sourceTree = "<group>"; };
+		A3DEA12923B8F99A005A4EC6 /* PageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageHeaderView.h; sourceTree = "<group>"; };
+		A3DEA12A23B8F99A005A4EC6 /* PageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageHeaderView.m; sourceTree = "<group>"; };
+		A3DEA12B23B8F99A005A4EC6 /* SecondPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondPageView.h; sourceTree = "<group>"; };
+		A3DEA12C23B8F99A005A4EC6 /* FirstPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstPageView.m; sourceTree = "<group>"; };
+		A3DEA12D23B8F99A005A4EC6 /* SecondPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondPageView.m; sourceTree = "<group>"; };
+		A3DEA13123B902DE005A4EC6 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,10 +73,17 @@
 			children = (
 				A3A0E80E23B8CD2C00F5527B /* AppDelegate.h */,
 				A3A0E80F23B8CD2C00F5527B /* AppDelegate.m */,
-				A3A0E81123B8CD2C00F5527B /* SceneDelegate.h */,
-				A3A0E81223B8CD2C00F5527B /* SceneDelegate.m */,
+				A3DEA13123B902DE005A4EC6 /* SceneDelegate.h */,
+				A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */,
 				A3A0E81423B8CD2C00F5527B /* ViewController.h */,
 				A3A0E81523B8CD2C00F5527B /* ViewController.m */,
+				A3DEA12923B8F99A005A4EC6 /* PageHeaderView.h */,
+				A3DEA12A23B8F99A005A4EC6 /* PageHeaderView.m */,
+				A3DEA12823B8F99A005A4EC6 /* FirstPageView.h */,
+				A3DEA12C23B8F99A005A4EC6 /* FirstPageView.m */,
+				A3DEA12B23B8F99A005A4EC6 /* SecondPageView.h */,
+				A3DEA12D23B8F99A005A4EC6 /* SecondPageView.m */,
+				A3DEA12723B8F888005A4EC6 /* Header.h */,
 				A3A0E81723B8CD2C00F5527B /* Main.storyboard */,
 				A3A0E81A23B8CD2F00F5527B /* Assets.xcassets */,
 				A3A0E81C23B8CD2F00F5527B /* LaunchScreen.storyboard */,
@@ -148,8 +165,11 @@
 			files = (
 				A3A0E81623B8CD2C00F5527B /* ViewController.m in Sources */,
 				A3A0E81023B8CD2C00F5527B /* AppDelegate.m in Sources */,
+				A3DEA13023B8F99A005A4EC6 /* SecondPageView.m in Sources */,
+				A3DEA13323B902DF005A4EC6 /* SceneDelegate.m in Sources */,
+				A3DEA12F23B8F99A005A4EC6 /* FirstPageView.m in Sources */,
+				A3DEA12E23B8F99A005A4EC6 /* PageHeaderView.m in Sources */,
 				A3A0E82123B8CD2F00F5527B /* main.m in Sources */,
-				A3A0E81323B8CD2C00F5527B /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,6 +312,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8FFNR95EQ;
 				INFOPLIST_FILE = WXMenuPageView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P8FFNR95EQ;
 				INFOPLIST_FILE = WXMenuPageView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
