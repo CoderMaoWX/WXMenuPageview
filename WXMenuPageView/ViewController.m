@@ -5,6 +5,7 @@
 //  Created by Luke on 2019/12/29.
 //  Copyright © 2019 Luocheng. All rights reserved.
 //
+// 一个菜单栏吸顶列表的另一种实现思路例子
 
 #import "ViewController.h"
 #import "PageHeaderView.h"
