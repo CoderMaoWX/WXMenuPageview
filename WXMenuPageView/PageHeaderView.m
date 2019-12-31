@@ -87,28 +87,34 @@
     CGFloat y = CGRectGetMaxY(self.headerImageView.frame);
     CGRect rect = CGRectMake(index * width, y, width-1, kMenuKeight);
     NSString *title = (index == 0) ? @"Menu1" : @"Menu2";
-    UIButton *btn = [[UIButton alloc] initWithFrame:rect];
-    btn.backgroundColor = [UIColor whiteColor];
-    [btn setTitle:title forState:(UIControlStateNormal)];
-    [btn setTitleColor:[UIColor grayColor] forState:(UIControlStateNormal)];
-    [btn setTitleColor:[UIColor blackColor] forState:(UIControlStateSelected)];
-    [btn addTarget:self action:@selector(menuAction:) forControlEvents:(UIControlEventTouchUpInside)];
-    btn.tag = index;
-    return btn;
+    
+    UIButton *button = [[UIButton alloc] initWithFrame:rect];
+    button.backgroundColor = [UIColor whiteColor];
+    [button setTitle:title forState:(UIControlStateNormal)];
+    [button setTitleColor:[UIColor grayColor] forState:(UIControlStateNormal)];
+    [button setTitleColor:[UIColor blackColor] forState:(UIControlStateSelected)];
+    [button addTarget:self action:@selector(menuAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    button.tag = index;
+    return button;
 }
 
-- (void)menuAction:(UIButton *)btn {
+- (void)menuAction:(UIButton *)button {
+    self.tmpMenuBtn.selected = NO;
     if (self.touchMenuBlock) {
-        self.touchMenuBlock(btn);
+        self.touchMenuBlock(button.tag);
     }
+    button.selected = YES;
+    self.tmpMenuBtn = button;
 }
 
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     UIPanGestureRecognizer *panGesture = self.mainScrollView.panGestureRecognizer;
     if (panGesture) {
         if (point.y < kHeaderHeight) {
+            [self removeGestureRecognizer:panGesture];
             [self addGestureRecognizer:panGesture];
         } else {
+            [self.mainScrollView removeGestureRecognizer:panGesture];
             [self.mainScrollView addGestureRecognizer:panGesture];
         }
     }

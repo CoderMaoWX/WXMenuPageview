@@ -13,7 +13,7 @@
 #import <UIKit/UIKit.h>
 
 #define kMenuKeight      44.0
-#define kHeaderHeight  (200.0)
+#define kHeaderHeight    (200.0)
 
 #define kNavBarHeight    44
 #define kStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height

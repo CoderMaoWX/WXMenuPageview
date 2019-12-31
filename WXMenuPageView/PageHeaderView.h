@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 
-@property (nonatomic, copy) void (^touchMenuBlock)(UIButton *);
+@property (nonatomic, copy) void (^touchMenuBlock)(NSInteger);
 
 @end
 

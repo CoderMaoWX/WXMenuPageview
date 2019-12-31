@@ -47,9 +47,7 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 //    CGFloat offsetY = scrollView.contentOffset.y;
-//    CGFloat menuMinY = kHeaderHeight - kMenuKeight;
-//    CGFloat toOffsetY = -(kHeaderHeight + offsetY);
-    //NSLog(@"子列表1 ===%.2f", offsetY);
+//    NSLog(@"子列表1 ===%.2f", offsetY);
     
     if (self.listViewDidScroll) {
         self.listViewDidScroll(scrollView);
