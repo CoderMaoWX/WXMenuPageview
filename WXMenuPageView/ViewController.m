@@ -42,7 +42,7 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(collectionView.bounds.size.width, collectionView.bounds.size.height);
+    return collectionView.bounds.size;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -130,7 +130,7 @@
     CGFloat menuMinY = kHeaderHeight - kMenuKeight;
     
     return ^(UIScrollView * scrollView) {
-        self.touchScrollView = scrollView;
+        weakSelf.touchScrollView = scrollView;
         
         CGFloat offsetY = scrollView.contentOffset.y;
         CGFloat toOffsetY = -(kHeaderHeight + offsetY);
@@ -147,13 +147,12 @@
 
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        UICollectionViewFlowLayout *_flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _flowLayout.minimumLineSpacing = 0;
-        _flowLayout.minimumInteritemSpacing = 0;
-        _flowLayout.sectionInset = UIEdgeInsetsZero;
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        flowLayout.minimumLineSpacing = 0;
+        flowLayout.minimumInteritemSpacing = 0;
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:_flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:self.view.bounds collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor systemBlueColor];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -172,7 +171,6 @@
         CGRect rect = CGRectMake(0, 0, KScreenWidth, kHeaderHeight);
         _headerView = [[PageHeaderView alloc] initWithFrame:rect];
         _headerView.backgroundColor = [UIColor systemPinkColor];
-        _headerView.userInteractionEnabled = YES;
         
         __weak ViewController *weakSelf = self;
         _headerView.touchMenuBlock = ^(NSInteger index) {
@@ -186,7 +184,6 @@
     if (!_firstPageView) {
         CGRect rect = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopBarHeight);
         _firstPageView = [[FirstPageView alloc] initWithFrame:rect];
-        _firstPageView.backgroundColor = [UIColor lightTextColor];
         _firstPageView.listViewDidScroll = self.listViewDidScroll;
     }
     return _firstPageView;
@@ -195,7 +192,6 @@
 - (SecondPageView *)secondPageView {
     if (!_secondPageView) {
         _secondPageView = [[SecondPageView alloc] initWithFrame:self.firstPageView.bounds];
-        _secondPageView.backgroundColor = [UIColor grayColor];
         _secondPageView.listViewDidScroll = self.listViewDidScroll;
     }
     return _secondPageView;

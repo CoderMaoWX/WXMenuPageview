@@ -20,6 +20,7 @@ static NSInteger kColumnCount = 3;
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor grayColor];
         [self addSubview:self.collectionView];
     }
     return self;

@@ -18,8 +18,8 @@
 #define kNavBarHeight    44
 #define kStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height
 #define kTopBarHeight   (kNavBarHeight + kStatusBarHeight)
-#define KScreenWidth    [UIScreen mainScreen].bounds.size.width
 #define KScreenHeight   [UIScreen mainScreen].bounds.size.height
+#define KScreenWidth    [UIScreen mainScreen].bounds.size.width
 #define kRandomColor    [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1.0]
 
 
