@@ -9,7 +9,7 @@
 #import "FirstPageView.h"
 #import "Header.h"
 
-static NSInteger kColumnCount = 3;
+static NSInteger kColumnCount = 4;
 
 @interface FirstPageView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -82,8 +82,6 @@ static NSInteger kColumnCount = 3;
         _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor lightTextColor];
         _collectionView.contentInset = offsetEdge;
-//        _collectionView.scrollIndicatorInsets = offsetEdge
-//        _collectionView.showsVerticalScrollIndicator = YES;
         [self configMainHeight:_collectionView];//先预设一个空数据的最大底部高度
         _collectionView.tag = 2019;
         _collectionView.delegate = self;

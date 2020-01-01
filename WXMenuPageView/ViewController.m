@@ -141,6 +141,7 @@
         weakSelf.headerView.frame = CGRectMake(0, toOffsetY, KScreenWidth, kHeaderHeight);
         
         scrollView.showsVerticalScrollIndicator = (toOffsetY <= -menuMinY);
+        //scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(kMenuKeight, 0, 0, 0);
     };
 }
 
