@@ -12,8 +12,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SecondPageView : UIView
 
-@property (nonatomic, strong) UICollectionView *collectionView;
-
 @property (nonatomic, copy) void (^listViewDidScroll)(UIScrollView *);
 
 @end

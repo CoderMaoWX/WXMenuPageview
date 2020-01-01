@@ -10,8 +10,6 @@
 
 @interface FirstPageView : UIView
 
-@property (nonatomic, strong) UICollectionView *collectionView;
-
 @property (nonatomic, copy) void (^listViewDidScroll)(UIScrollView *);
 
 @end

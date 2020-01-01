@@ -10,6 +10,8 @@
 #import "Header.h"
 
 @interface FirstPageView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, assign) BOOL lessThenMainHeight;
 @end
 
 @implementation FirstPageView
@@ -17,8 +19,19 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.collectionView];    }
+        [self addSubview:self.collectionView];
+    }
     return self;
+}
+
+- (void)configMainHeight:(UICollectionView *)collectionView {
+    CGRect frame = self.bounds;
+    CGFloat height = collectionView.contentSize.height;
+    self.lessThenMainHeight = (height < frame.size.height);
+    collectionView.showsVerticalScrollIndicator = !self.lessThenMainHeight;
+    
+    CGFloat offsetBottom = self.lessThenMainHeight ? (frame.size.height - height - kMenuKeight) : 0.0;
+    collectionView.contentInset = UIEdgeInsetsMake(kHeaderHeight, 0, offsetBottom, 0);
 }
 
 #pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -32,6 +45,9 @@
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndexPath:indexPath];
     cell.contentView.backgroundColor = kRandomColor;
+    if (indexPath.item == 0) {//更新底部高度
+        [self configMainHeight:collectionView];
+    }
     return cell;
 }
 
@@ -45,8 +61,10 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat offsetY = scrollView.contentOffset.y;
-    scrollView.showsVerticalScrollIndicator = (offsetY > -kHeaderHeight);
-    // NSLog(@"子列表1 ===%.2f", offsetY);
+    if (!self.lessThenMainHeight) {
+        //scrollView.showsVerticalScrollIndicator = (offsetY > -kHeaderHeight);
+    }
+     NSLog(@"子列表1 ===%.2f", offsetY);
     if (self.listViewDidScroll) {
         self.listViewDidScroll(scrollView);
     }
@@ -54,17 +72,18 @@
 
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        UICollectionViewFlowLayout *_flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        _flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _flowLayout.minimumLineSpacing = 10;
-        _flowLayout.minimumInteritemSpacing = 0;
-        _flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        flowLayout.minimumLineSpacing = 10;
+        flowLayout.minimumInteritemSpacing = 0;
+        flowLayout.sectionInset = UIEdgeInsetsMake(10, 10, 10, 10);
         
         UIEdgeInsets offsetEdge = UIEdgeInsetsMake(kHeaderHeight, 0, 0, 0);
-        _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:_flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
         _collectionView.contentInset = offsetEdge;
         _collectionView.scrollIndicatorInsets = offsetEdge;
+        [self configMainHeight:_collectionView];//先预设一个空数据的最大底部高度
         _collectionView.tag = 2019;
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
