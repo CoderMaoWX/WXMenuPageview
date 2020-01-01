@@ -14,6 +14,7 @@
 @interface WXPageListView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, assign) NSInteger kColumnCount;
+@property (nonatomic, copy) void (^listViewDidScroll)(UIScrollView *);
 @end
 
 @implementation WXPageListView
@@ -46,6 +47,10 @@
     
     CGFloat offsetBottom = lessThenMainHeight ? (frame.size.height - height - kMenuKeight) : 0.0;
     collectionView.contentInset = UIEdgeInsetsMake(kHeaderHeight, 0, offsetBottom, 0);
+}
+
+- (void)listViewDidScroll:(void(^)(UIScrollView *))didScrollBlock {
+    self.listViewDidScroll = didScrollBlock;
 }
 
 #pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>

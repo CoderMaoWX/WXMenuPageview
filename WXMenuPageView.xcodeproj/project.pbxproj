@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3A0DF5223BCFA4600118AED /* WXMainPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0DF5123BCFA4600118AED /* WXMainPageView.m */; };
 		A3A0E81023B8CD2C00F5527B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E80F23B8CD2C00F5527B /* AppDelegate.m */; };
 		A3A0E81623B8CD2C00F5527B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E81523B8CD2C00F5527B /* ViewController.m */; };
 		A3A0E81923B8CD2C00F5527B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3A0E81723B8CD2C00F5527B /* Main.storyboard */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A3A0DF5023BCFA4600118AED /* WXMainPageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXMainPageView.h; sourceTree = "<group>"; };
+		A3A0DF5123BCFA4600118AED /* WXMainPageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXMainPageView.m; sourceTree = "<group>"; };
 		A3A0E80B23B8CD2C00F5527B /* WXMenuPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WXMenuPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3A0E80E23B8CD2C00F5527B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A3A0E80F23B8CD2C00F5527B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -74,6 +77,8 @@
 				A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */,
 				A3A0E81423B8CD2C00F5527B /* ViewController.h */,
 				A3A0E81523B8CD2C00F5527B /* ViewController.m */,
+				A3A0DF5023BCFA4600118AED /* WXMainPageView.h */,
+				A3A0DF5123BCFA4600118AED /* WXMainPageView.m */,
 				A3DEA12923B8F99A005A4EC6 /* WXPageHeaderView.h */,
 				A3DEA12A23B8F99A005A4EC6 /* WXPageHeaderView.m */,
 				A3DEA12823B8F99A005A4EC6 /* WXPageListView.h */,
@@ -161,6 +166,7 @@
 				A3A0E81623B8CD2C00F5527B /* ViewController.m in Sources */,
 				A3A0E81023B8CD2C00F5527B /* AppDelegate.m in Sources */,
 				A3DEA13323B902DF005A4EC6 /* SceneDelegate.m in Sources */,
+				A3A0DF5223BCFA4600118AED /* WXMainPageView.m in Sources */,
 				A3DEA12F23B8F99A005A4EC6 /* WXPageListView.m in Sources */,
 				A3DEA12E23B8F99A005A4EC6 /* WXPageHeaderView.m in Sources */,
 				A3A0E82123B8CD2F00F5527B /* main.m in Sources */,

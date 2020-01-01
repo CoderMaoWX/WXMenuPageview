@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WXMainPageView.h"
 
-@interface WXPageListView : UIView
-
-@property (nonatomic, copy) void (^listViewDidScroll)(UIScrollView *);
+@interface WXPageListView : UIView<WXPageListViewDelegate>
 
 - (instancetype)initWithFrame:(CGRect)frame
                   columnCount:(NSInteger)column;
