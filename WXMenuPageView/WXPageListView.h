@@ -1,5 +1,5 @@
 //
-//  FirstPageView.h
+//  WXPageListView.h
 //  ScrollPageDemo
 //
 //  Created by Luke on 2019/12/25.
@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstPageView : UIView
+@interface WXPageListView : UIView
 
 @property (nonatomic, copy) void (^listViewDidScroll)(UIScrollView *);
+
+- (instancetype)initWithFrame:(CGRect)frame
+                  columnCount:(NSInteger)column;
 
 @end

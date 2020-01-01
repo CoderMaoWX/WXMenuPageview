@@ -1,27 +1,40 @@
 //
-//  FirstPageView.m
+//  WXPageListView.m
 //  ScrollPageDemo
 //
 //  Created by Luke on 2019/12/25.
 //  Copyright © 2019 Luke. All rights reserved.
 //
 
-#import "FirstPageView.h"
+#import "WXPageListView.h"
 #import "Header.h"
 
-static NSInteger kColumnCount = 3;
+//static NSInteger kColumnCount = 3;
 
-@interface FirstPageView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface WXPageListView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, assign) NSInteger kColumnCount;
 @end
 
-@implementation FirstPageView
+@implementation WXPageListView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.kColumnCount = 3;
         self.backgroundColor = [UIColor grayColor];
         [self addSubview:self.collectionView];
+    }
+    return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame columnCount:(NSInteger)column {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.kColumnCount = column;
+        self.backgroundColor = [UIColor grayColor];
+        [self addSubview:self.collectionView];
+        
     }
     return self;
 }
@@ -56,7 +69,7 @@ static NSInteger kColumnCount = 3;
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat size = (KScreenWidth - 10 * (kColumnCount + 1) ) / kColumnCount;
+    CGFloat size = (KScreenWidth - 10 * (self.kColumnCount + 1) ) / self.kColumnCount;
     return CGSizeMake(size, size * 1.2);
 }
 

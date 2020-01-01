@@ -1,5 +1,5 @@
 //
-//  PageHeaderView.h
+//  WXPageHeaderView.h
 //  ScrollPageDemo
 //
 //  Created by 610582 on 2019/12/28.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PageHeaderView : UIView
+@interface WXPageHeaderView : UIView
 
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 

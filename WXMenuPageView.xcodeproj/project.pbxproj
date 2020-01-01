@@ -13,9 +13,8 @@
 		A3A0E81B23B8CD2F00F5527B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3A0E81A23B8CD2F00F5527B /* Assets.xcassets */; };
 		A3A0E81E23B8CD2F00F5527B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3A0E81C23B8CD2F00F5527B /* LaunchScreen.storyboard */; };
 		A3A0E82123B8CD2F00F5527B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E82023B8CD2F00F5527B /* main.m */; };
-		A3DEA12E23B8F99A005A4EC6 /* PageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12A23B8F99A005A4EC6 /* PageHeaderView.m */; };
-		A3DEA12F23B8F99A005A4EC6 /* FirstPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12C23B8F99A005A4EC6 /* FirstPageView.m */; };
-		A3DEA13023B8F99A005A4EC6 /* SecondPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12D23B8F99A005A4EC6 /* SecondPageView.m */; };
+		A3DEA12E23B8F99A005A4EC6 /* WXPageHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12A23B8F99A005A4EC6 /* WXPageHeaderView.m */; };
+		A3DEA12F23B8F99A005A4EC6 /* WXPageListView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA12C23B8F99A005A4EC6 /* WXPageListView.m */; };
 		A3DEA13323B902DF005A4EC6 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */; };
 /* End PBXBuildFile section */
 
@@ -31,12 +30,10 @@
 		A3A0E81F23B8CD2F00F5527B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3A0E82023B8CD2F00F5527B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A3DEA12723B8F888005A4EC6 /* Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		A3DEA12823B8F99A005A4EC6 /* FirstPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstPageView.h; sourceTree = "<group>"; };
-		A3DEA12923B8F99A005A4EC6 /* PageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageHeaderView.h; sourceTree = "<group>"; };
-		A3DEA12A23B8F99A005A4EC6 /* PageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageHeaderView.m; sourceTree = "<group>"; };
-		A3DEA12B23B8F99A005A4EC6 /* SecondPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondPageView.h; sourceTree = "<group>"; };
-		A3DEA12C23B8F99A005A4EC6 /* FirstPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstPageView.m; sourceTree = "<group>"; };
-		A3DEA12D23B8F99A005A4EC6 /* SecondPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondPageView.m; sourceTree = "<group>"; };
+		A3DEA12823B8F99A005A4EC6 /* WXPageListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPageListView.h; sourceTree = "<group>"; };
+		A3DEA12923B8F99A005A4EC6 /* WXPageHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXPageHeaderView.h; sourceTree = "<group>"; };
+		A3DEA12A23B8F99A005A4EC6 /* WXPageHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPageHeaderView.m; sourceTree = "<group>"; };
+		A3DEA12C23B8F99A005A4EC6 /* WXPageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPageListView.m; sourceTree = "<group>"; };
 		A3DEA13123B902DE005A4EC6 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,12 +74,10 @@
 				A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */,
 				A3A0E81423B8CD2C00F5527B /* ViewController.h */,
 				A3A0E81523B8CD2C00F5527B /* ViewController.m */,
-				A3DEA12923B8F99A005A4EC6 /* PageHeaderView.h */,
-				A3DEA12A23B8F99A005A4EC6 /* PageHeaderView.m */,
-				A3DEA12823B8F99A005A4EC6 /* FirstPageView.h */,
-				A3DEA12C23B8F99A005A4EC6 /* FirstPageView.m */,
-				A3DEA12B23B8F99A005A4EC6 /* SecondPageView.h */,
-				A3DEA12D23B8F99A005A4EC6 /* SecondPageView.m */,
+				A3DEA12923B8F99A005A4EC6 /* WXPageHeaderView.h */,
+				A3DEA12A23B8F99A005A4EC6 /* WXPageHeaderView.m */,
+				A3DEA12823B8F99A005A4EC6 /* WXPageListView.h */,
+				A3DEA12C23B8F99A005A4EC6 /* WXPageListView.m */,
 				A3DEA12723B8F888005A4EC6 /* Header.h */,
 				A3A0E81723B8CD2C00F5527B /* Main.storyboard */,
 				A3A0E81A23B8CD2F00F5527B /* Assets.xcassets */,
@@ -165,10 +160,9 @@
 			files = (
 				A3A0E81623B8CD2C00F5527B /* ViewController.m in Sources */,
 				A3A0E81023B8CD2C00F5527B /* AppDelegate.m in Sources */,
-				A3DEA13023B8F99A005A4EC6 /* SecondPageView.m in Sources */,
 				A3DEA13323B902DF005A4EC6 /* SceneDelegate.m in Sources */,
-				A3DEA12F23B8F99A005A4EC6 /* FirstPageView.m in Sources */,
-				A3DEA12E23B8F99A005A4EC6 /* PageHeaderView.m in Sources */,
+				A3DEA12F23B8F99A005A4EC6 /* WXPageListView.m in Sources */,
+				A3DEA12E23B8F99A005A4EC6 /* WXPageHeaderView.m in Sources */,
 				A3A0E82123B8CD2F00F5527B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

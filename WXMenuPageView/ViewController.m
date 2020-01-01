@@ -8,18 +8,17 @@
 // 一个菜单栏吸顶列表的另一种实现思路例子
 
 #import "ViewController.h"
-#import "PageHeaderView.h"
-#import "FirstPageView.h"
-#import "SecondPageView.h"
+#import "WXPageHeaderView.h"
+#import "WXPageListView.h"
 #import "Header.h"
 
 @interface ViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
-@property (nonatomic, strong) PageHeaderView    *headerView;
-@property (nonatomic, strong) FirstPageView     *firstPageView;
-@property (nonatomic, strong) SecondPageView    *secondPageView;
-@property (nonatomic, strong) UICollectionView  *collectionView;
-@property (nonatomic, strong) UIScrollView      *touchScrollView;
-@property (nonatomic, assign) BOOL              hasStickyMenu;
+@property (nonatomic, strong) WXPageHeaderView   *headerView;
+@property (nonatomic, strong) WXPageListView     *firstPageView;
+@property (nonatomic, strong) WXPageListView     *secondPageView;
+@property (nonatomic, strong) UICollectionView   *collectionView;
+@property (nonatomic, strong) UIScrollView       *touchScrollView;
+@property (nonatomic, assign) BOOL               hasStickyMenu;
 @end
 
 @implementation ViewController
@@ -166,10 +165,10 @@
     return _collectionView;
 }
 
-- (PageHeaderView *)headerView {
+- (WXPageHeaderView *)headerView {
     if (!_headerView) {
         CGRect rect = CGRectMake(0, 0, KScreenWidth, kHeaderHeight);
-        _headerView = [[PageHeaderView alloc] initWithFrame:rect];
+        _headerView = [[WXPageHeaderView alloc] initWithFrame:rect];
         _headerView.backgroundColor = [UIColor systemPinkColor];
         
         __weak ViewController *weakSelf = self;
@@ -180,18 +179,18 @@
     return _headerView;
 }
 
-- (FirstPageView *)firstPageView {
+- (WXPageListView *)firstPageView {
     if (!_firstPageView) {
         CGRect rect = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopBarHeight);
-        _firstPageView = [[FirstPageView alloc] initWithFrame:rect];
+        _firstPageView = [[WXPageListView alloc] initWithFrame:rect columnCount:3];
         _firstPageView.listViewDidScroll = self.listViewDidScroll;
     }
     return _firstPageView;
 }
 
-- (SecondPageView *)secondPageView {
+- (WXPageListView *)secondPageView {
     if (!_secondPageView) {
-        _secondPageView = [[SecondPageView alloc] initWithFrame:self.firstPageView.bounds];
+        _secondPageView = [[WXPageListView alloc] initWithFrame:self.firstPageView.bounds columnCount:2];
         _secondPageView.listViewDidScroll = self.listViewDidScroll;
     }
     return _secondPageView;

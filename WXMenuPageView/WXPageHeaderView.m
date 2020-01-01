@@ -1,22 +1,22 @@
 //
-//  PageHeaderView.m
+//  WXPageHeaderView.m
 //  ScrollPageDemo
 //
 //  Created by 610582 on 2019/12/28.
 //  Copyright © 2019 Luke. All rights reserved.
 //
 
-#import "PageHeaderView.h"
+#import "WXPageHeaderView.h"
 #import "Header.h"
 
-@interface PageHeaderView ()<UITableViewDelegate, UITableViewDataSource>
+@interface WXPageHeaderView ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView       *tableView;
 @property (nonatomic, strong) UIImageView       *headerImageView;
 @property (nonatomic, strong) UIButton          *tmpMenuBtn;
 @property (nonatomic, strong) UIButton          *tmpCellBtn;
 @end
 
-@implementation PageHeaderView
+@implementation WXPageHeaderView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
