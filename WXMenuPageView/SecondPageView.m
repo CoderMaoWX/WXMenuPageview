@@ -45,9 +45,9 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat offsetY = scrollView.contentOffset.y;
-//    NSLog(@"子列表2 ===%.2f", offsetY);
-    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    scrollView.showsVerticalScrollIndicator = (offsetY > -kHeaderHeight);
+    // NSLog(@"子列表2 ===%.2f", offsetY);
     if (self.listViewDidScroll) {
         self.listViewDidScroll(scrollView);
     }

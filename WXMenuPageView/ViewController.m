@@ -65,8 +65,6 @@
     if (!pageView)return;
     UIScrollView *scrollView = [pageView viewWithTag:2019];
     if ([scrollView isKindOfClass:[UIScrollView class]]) {
-
-        NSLog(@"当前页码=前==%ld", (long)indexPath.item);
         self.headerView.mainScrollView = scrollView;
 
         CGFloat headerViewY = self.headerView.frame.origin.y;
@@ -80,20 +78,40 @@
     }
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell
+        forItemAtIndexPath:(NSIndexPath *)indexPath
+{
     NSInteger page = collectionView.contentOffset.x / collectionView.bounds.size.width;
-
     if (page < [collectionView numberOfItemsInSection:0]) {
-        NSArray *menuBtnArray = self.headerView.subviews;
-        for (NSInteger i=0; i<menuBtnArray.count; i++) {
-            UIButton *menuBtn = menuBtnArray[i];
-            if (![menuBtn isKindOfClass:[UIButton class]]) continue;
-            if (menuBtn.tag == page) {
-                menuBtn.selected = YES;
-            } else {
-                menuBtn.selected = NO;
-            }
+        /// 设置头部主ScrollView事件
+        [self setupHeaderMainScrollView:page];
+        
+        /// 选中指定Menu菜单
+        [self selectedPageMenu:page];
+    }
+}
+
+- (void)setupHeaderMainScrollView:(NSInteger)page {
+    NSIndexPath *path = [NSIndexPath indexPathForRow:page inSection:0];
+    UICollectionViewCell *curCell = [self.collectionView cellForItemAtIndexPath:path];
+    UIView *pageView = curCell.contentView.subviews.firstObject;
+    if (!pageView)return;
+    UIScrollView *scrollView = [pageView viewWithTag:2019];
+    if ([scrollView isKindOfClass:[UIScrollView class]]) {
+        self.headerView.mainScrollView = scrollView;
+    }
+}
+
+- (void)selectedPageMenu:(NSInteger)page {
+    NSLog(@"当前菜单栏===%ld", (long)page);
+    NSArray *menuBtnArray = self.headerView.subviews;
+    for (NSInteger i=0; i<menuBtnArray.count; i++) {
+        UIButton *menuBtn = menuBtnArray[i];
+        if (![menuBtn isKindOfClass:[UIButton class]]) continue;
+        if (menuBtn.tag == page) {
+            menuBtn.selected = YES;
+        } else {
+            menuBtn.selected = NO;
         }
     }
 }
@@ -148,7 +166,6 @@
         _headerView = [[PageHeaderView alloc] initWithFrame:rect];
         _headerView.backgroundColor = [UIColor systemPinkColor];
         _headerView.userInteractionEnabled = YES;
-        //_headerView.mainScrollView = self.firstPageView.collectionView;
         
         __weak ViewController *weakSelf = self;
         _headerView.touchMenuBlock = ^(NSInteger index) {

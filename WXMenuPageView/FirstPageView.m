@@ -17,9 +17,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.collectionView];
-        //NSLog(@"FirstPageView===%@", self.collectionView);
-    }
+        [self addSubview:self.collectionView];    }
     return self;
 }
 
@@ -46,9 +44,9 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    CGFloat offsetY = scrollView.contentOffset.y;
-//    NSLog(@"子列表1 ===%.2f", offsetY);
-    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    scrollView.showsVerticalScrollIndicator = (offsetY > -kHeaderHeight);
+    // NSLog(@"子列表1 ===%.2f", offsetY);
     if (self.listViewDidScroll) {
         self.listViewDidScroll(scrollView);
     }
