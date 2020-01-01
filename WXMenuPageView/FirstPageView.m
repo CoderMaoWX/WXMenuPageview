@@ -9,7 +9,7 @@
 #import "FirstPageView.h"
 #import "Header.h"
 
-static NSInteger kColumnCount = 4;
+static NSInteger kColumnCount = 3;
 
 @interface FirstPageView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
