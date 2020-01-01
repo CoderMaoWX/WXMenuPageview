@@ -19,6 +19,7 @@
 @property (nonatomic, strong) SecondPageView    *secondPageView;
 @property (nonatomic, strong) UICollectionView  *collectionView;
 @property (nonatomic, strong) UIScrollView      *touchScrollView;
+@property (nonatomic, assign) BOOL              hasStickyMenu;
 @end
 
 @implementation ViewController
@@ -70,9 +71,12 @@
         CGFloat headerViewY = self.headerView.frame.origin.y;
         CGFloat menuMinY = kHeaderHeight - kMenuKeight;
         if (headerViewY <= -menuMinY) {
-            [scrollView setContentOffset:CGPointMake(0, -kMenuKeight)];
-
+            if (!self.hasStickyMenu) {
+                self.hasStickyMenu = YES;
+                [scrollView setContentOffset:CGPointMake(0, -kMenuKeight)];
+            }
         } else if (self.touchScrollView) {
+            self.hasStickyMenu = NO;
             [scrollView setContentOffset:CGPointMake(0, self.touchScrollView.contentOffset.y)];
         }
     }
@@ -135,6 +139,8 @@
         }
         //NSLog(@"offsetY==%.2f",toOffsetY);
         weakSelf.headerView.frame = CGRectMake(0, toOffsetY, KScreenWidth, kHeaderHeight);
+        
+        scrollView.showsVerticalScrollIndicator = (toOffsetY <= -menuMinY);
     };
 }
 

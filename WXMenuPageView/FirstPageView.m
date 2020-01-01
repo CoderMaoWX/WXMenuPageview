@@ -9,9 +9,10 @@
 #import "FirstPageView.h"
 #import "Header.h"
 
+static NSInteger kColumnCount = 3;
+
 @interface FirstPageView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, assign) BOOL lessThenMainHeight;
 @end
 
 @implementation FirstPageView
@@ -27,10 +28,9 @@
 - (void)configMainHeight:(UICollectionView *)collectionView {
     CGRect frame = self.bounds;
     CGFloat height = collectionView.contentSize.height;
-    self.lessThenMainHeight = (height < frame.size.height);
-    collectionView.showsVerticalScrollIndicator = !self.lessThenMainHeight;
+    BOOL lessThenMainHeight = (height < frame.size.height);
     
-    CGFloat offsetBottom = self.lessThenMainHeight ? (frame.size.height - height - kMenuKeight) : 0.0;
+    CGFloat offsetBottom = lessThenMainHeight ? (frame.size.height - height - kMenuKeight) : 0.0;
     collectionView.contentInset = UIEdgeInsetsMake(kHeaderHeight, 0, offsetBottom, 0);
 }
 
@@ -55,16 +55,16 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat size = (KScreenWidth - 10 *4)/3;
+    CGFloat size = (KScreenWidth - 10 * (kColumnCount + 1) ) / kColumnCount;
     return CGSizeMake(size, size * 1.2);
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    NSLog(@"didSelectItemAtIndexPath==%@", cell);
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat offsetY = scrollView.contentOffset.y;
-    if (!self.lessThenMainHeight) {
-        //scrollView.showsVerticalScrollIndicator = (offsetY > -kHeaderHeight);
-    }
-     NSLog(@"子列表1 ===%.2f", offsetY);
     if (self.listViewDidScroll) {
         self.listViewDidScroll(scrollView);
     }
@@ -80,9 +80,10 @@
         
         UIEdgeInsets offsetEdge = UIEdgeInsetsMake(kHeaderHeight, 0, 0, 0);
         _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:flowLayout];
-        _collectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _collectionView.backgroundColor = [UIColor lightTextColor];
         _collectionView.contentInset = offsetEdge;
-        _collectionView.scrollIndicatorInsets = offsetEdge;
+//        _collectionView.scrollIndicatorInsets = offsetEdge
+//        _collectionView.showsVerticalScrollIndicator = YES;
         [self configMainHeight:_collectionView];//先预设一个空数据的最大底部高度
         _collectionView.tag = 2019;
         _collectionView.delegate = self;

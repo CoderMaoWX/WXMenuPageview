@@ -9,9 +9,10 @@
 #import "SecondPageView.h"
 #import "Header.h"
 
+static NSInteger kColumnCount = 2;
+
 @interface SecondPageView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, assign) BOOL lessThenMainHeight;
 @end
 
 @implementation SecondPageView
@@ -27,17 +28,16 @@
 - (void)configMainHeight:(UICollectionView *)collectionView {
     CGRect frame = self.bounds;
     CGFloat height = collectionView.contentSize.height;
-    self.lessThenMainHeight = (height < frame.size.height);
-    collectionView.showsVerticalScrollIndicator = !self.lessThenMainHeight;
+    BOOL lessThenMainHeight = (height < frame.size.height);
     
-    CGFloat offsetBottom = self.lessThenMainHeight ? (frame.size.height - height - kMenuKeight) : 0.0;
+    CGFloat offsetBottom = lessThenMainHeight ? (frame.size.height - height - kMenuKeight) : 0.0;
     collectionView.contentInset = UIEdgeInsetsMake(kHeaderHeight, 0, offsetBottom, 0);
 }
 
 #pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    return 2;
+    return 54;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -55,7 +55,7 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat size = (KScreenWidth - 10 *3)/2;
+    CGFloat size = (KScreenWidth - 10 * (kColumnCount + 1) ) / kColumnCount;
     return CGSizeMake(size, size * 1.2);
 }
 
@@ -65,11 +65,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat offsetY = scrollView.contentOffset.y;
-    if (!self.lessThenMainHeight) {
-        //scrollView.showsVerticalScrollIndicator = (offsetY > -kHeaderHeight);
-    }
-    NSLog(@"子列表2 ===%.2f", offsetY);
     if (self.listViewDidScroll) {
         self.listViewDidScroll(scrollView);
     }
@@ -87,8 +82,8 @@
         _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = [UIColor lightTextColor];
         _collectionView.contentInset = offsetEdge;
-        _collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(kHeaderHeight, 0, 0, 0);
-        _collectionView.showsVerticalScrollIndicator = YES;
+//        _collectionView.scrollIndicatorInsets = offsetEdge
+//        _collectionView.showsVerticalScrollIndicator = YES;
         [self configMainHeight:_collectionView];//先预设一个空数据的最大底部高度
         _collectionView.tag = 2019;
         _collectionView.delegate = self;
