@@ -8,14 +8,13 @@
 // 一个菜单栏吸顶列表的另一种实现思路例子
 
 #import "ViewController.h"
-#import "WXPageHeaderView.h"
 #import "WXPageListView.h"
 #import "Header.h"
 
-#import "WXMainPageView.h"
+#import "WXPageMainView.h"
 
 @interface ViewController ()<WXMainPageViewDelegate>
-@property (nonatomic, strong) WXMainPageView  *menuPageView;
+@property (nonatomic, strong) WXPageMainView  *menuPageView;
 @end
 
 @implementation ViewController
@@ -28,9 +27,9 @@
     [self.view addSubview:self.menuPageView];
 }
 
-- (WXMainPageView *)menuPageView {
+- (WXPageMainView *)menuPageView {
     if (!_menuPageView) {
-        _menuPageView = [[WXMainPageView alloc] initWithFrame:self.view.bounds];
+        _menuPageView = [[WXPageMainView alloc] initWithFrame:self.view.bounds];
         _menuPageView.delegate = self;
     }
     return _menuPageView;
@@ -38,11 +37,11 @@
 
 #pragma mark - <WXMainPageViewDelegate>
 
-- (NSInteger)numberOfMenuForPageView:(WXMainPageView *)pageView {
+- (NSInteger)numberOfMenuForPageView:(WXPageMainView *)pageView {
     return 2;
 }
 
-- (UIView<WXPageListViewDelegate> *)pageView:(WXMainPageView *)pageView
+- (UIView<WXPageListViewDelegate> *)pageView:(WXPageMainView *)pageView
                           pageForMenuAtIndex:(NSInteger)index
 {
     CGRect rect = CGRectMake(0, 0, KScreenWidth, KScreenHeight - kTopBarHeight);

@@ -1,24 +1,24 @@
 //
-//  WXMainPageView.m
+//  WXPageMainView.m
 //  WXMenuPageView
 //
 //  Created by Luke on 2020/1/2.
 //  Copyright © 2020 Luocheng. All rights reserved.
 //
 
-#import "WXMainPageView.h"
+#import "WXPageMainView.h"
 #import "WXPageHeaderView.h"
 #import "WXPageListView.h"
 #import "Header.h"
 
-@interface WXMainPageView ()<UICollectionViewDelegate, UICollectionViewDataSource>
+@interface WXPageMainView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) WXPageHeaderView   *headerView;
 @property (nonatomic, strong) UICollectionView   *collectionView;
 @property (nonatomic, strong) UIScrollView       *touchScrollView;
 @property (nonatomic, assign) BOOL               hasStickyMenu;
 @end
 
-@implementation WXMainPageView
+@implementation WXPageMainView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -33,7 +33,8 @@
     [self addSubview:self.headerView];
 }
 
-#pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>
+#pragma mark - <UICollectionViewDelegate>
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
     if ([self.delegate respondsToSelector:@selector(numberOfMenuForPageView:)]) {
@@ -49,10 +50,9 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
-                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndexPath:indexPath];
-    cell.contentView.backgroundColor = kRandomColor;
     
     UIView<WXPageListViewDelegate> *pageView = nil;
     if ([self.delegate respondsToSelector:@selector(pageView:pageForMenuAtIndex:)]) {
@@ -67,10 +67,12 @@
     return cell;
 }
 
+#pragma mark - <UICollectionViewDataSource>
+
 - (void)collectionView:(UICollectionView *)collectionView
        willDisplayCell:(UICollectionViewCell *)cell
-    forItemAtIndexPath:(NSIndexPath *)indexPath
-{
+    forItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     UIView *pageView = cell.contentView.subviews.firstObject;
     if (!pageView)return;
     UIScrollView *scrollView = [pageView viewWithTag:2019];
@@ -92,8 +94,8 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell
-        forItemAtIndexPath:(NSIndexPath *)indexPath
-{
+      forItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     NSInteger page = collectionView.contentOffset.x / collectionView.bounds.size.width;
     if (page < [collectionView numberOfItemsInSection:0]) {
         /// 设置头部主ScrollView事件
@@ -103,6 +105,8 @@
         [self selectedPageMenu:page];
     }
 }
+
+#pragma mark - <DealwithMainScroll>
 
 - (void)setupHeaderMainScrollView:(NSInteger)page {
     NSIndexPath *path = [NSIndexPath indexPathForRow:page inSection:0];
@@ -135,7 +139,7 @@
 }
 
 - (void(^)(UIScrollView *))listViewDidScroll {
-    __weak WXMainPageView *weakSelf = self;
+    __weak WXPageMainView *weakSelf = self;
     CGFloat menuMinY = kHeaderHeight - kMenuKeight;
     
     return ^(UIScrollView * scrollView) {
@@ -152,6 +156,22 @@
         scrollView.showsVerticalScrollIndicator = (toOffsetY <= -menuMinY);
         //scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(kMenuKeight, 0, 0, 0);
     };
+}
+
+#pragma mark - <InitSubView>
+
+- (WXPageHeaderView *)headerView {
+    if (!_headerView) {
+        CGRect rect = CGRectMake(0, 0, KScreenWidth, kHeaderHeight);
+        _headerView = [[WXPageHeaderView alloc] initWithFrame:rect];
+        _headerView.backgroundColor = [UIColor systemPinkColor];
+        
+        __weak WXPageMainView *weakSelf = self;
+        _headerView.touchMenuBlock = ^(NSInteger index) {
+            [weakSelf scrollToIndexPage:index];
+        };
+    }
+    return _headerView;
 }
 
 - (UICollectionView *)collectionView {
@@ -173,20 +193,6 @@
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
     }
     return _collectionView;
-}
-
-- (WXPageHeaderView *)headerView {
-    if (!_headerView) {
-        CGRect rect = CGRectMake(0, 0, KScreenWidth, kHeaderHeight);
-        _headerView = [[WXPageHeaderView alloc] initWithFrame:rect];
-        _headerView.backgroundColor = [UIColor systemPinkColor];
-        
-        __weak WXMainPageView *weakSelf = self;
-        _headerView.touchMenuBlock = ^(NSInteger index) {
-            [weakSelf scrollToIndexPage:index];
-        };
-    }
-    return _headerView;
 }
 
 @end

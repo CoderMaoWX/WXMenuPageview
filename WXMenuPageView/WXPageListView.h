@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WXMainPageView.h"
+#import "WXPageMainView.h"
 
 @interface WXPageListView : UIView<WXPageListViewDelegate>
 

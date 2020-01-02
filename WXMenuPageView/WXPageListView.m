@@ -23,8 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.kColumnCount = 3;
-        self.backgroundColor = [UIColor grayColor];
-        [self addSubview:self.collectionView];
+        [self initSubView];
     }
     return self;
 }
@@ -33,11 +32,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.kColumnCount = column;
-        self.backgroundColor = [UIColor grayColor];
-        [self addSubview:self.collectionView];
-        
+        [self initSubView];
     }
     return self;
+}
+
+- (void)initSubView {
+    self.backgroundColor = [UIColor whiteColor];
+    [self addSubview:self.collectionView];
 }
 
 - (void)configMainHeight:(UICollectionView *)collectionView {
@@ -53,7 +55,7 @@
     self.listViewDidScroll = didScrollBlock;
 }
 
-#pragma mark - <UICollectionViewDelegate, UICollectionViewDataSource>
+#pragma mark - <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
     return 54;
@@ -63,7 +65,7 @@
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndexPath:indexPath];
-    cell.contentView.backgroundColor = kRandomColor;
+    cell.contentView.backgroundColor = kRandomColor_A(0.3);
     if (indexPath.item == 0) {//更新底部高度
         [self configMainHeight:collectionView];
     }
@@ -78,6 +80,8 @@
     return CGSizeMake(size, size * 1.2);
 }
 
+#pragma mark - <UICollectionViewDelegate>
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
     NSLog(@"didSelectItemAtIndexPath==%@", cell);
@@ -89,6 +93,8 @@
     }
 }
 
+#pragma mark - <InitSubView>
+
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -99,7 +105,7 @@
         
         UIEdgeInsets offsetEdge = UIEdgeInsetsMake(kHeaderHeight, 0, 0, 0);
         _collectionView = [[UICollectionView alloc]initWithFrame:self.bounds collectionViewLayout:flowLayout];
-        _collectionView.backgroundColor = [UIColor lightTextColor];
+        _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.contentInset = offsetEdge;
         [self configMainHeight:_collectionView];//先预设一个空数据的最大底部高度
         _collectionView.tag = 2019;

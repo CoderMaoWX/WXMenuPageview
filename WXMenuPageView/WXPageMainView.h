@@ -1,5 +1,5 @@
 //
-//  WXMainPageView.h
+//  WXPageMainView.h
 //  WXMenuPageView
 //
 //  Created by Luke on 2020/1/2.
@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class WXMainPageView;
+@class WXPageMainView;
 
 @protocol WXPageListViewDelegate <NSObject>
 @required
@@ -18,14 +18,14 @@
 @protocol WXMainPageViewDelegate <NSObject>
 @required
 
-- (NSInteger)numberOfMenuForPageView:(WXMainPageView *)pageView;
+- (NSInteger)numberOfMenuForPageView:(WXPageMainView *)pageView;
 
-- (UIView<WXPageListViewDelegate> *)pageView:(WXMainPageView *)pageView pageForMenuAtIndex:(NSInteger)index;
+- (UIView<WXPageListViewDelegate> *)pageView:(WXPageMainView *)pageView pageForMenuAtIndex:(NSInteger)index;
 
 @end
 
 
-@interface WXMainPageView : UIView
+@interface WXPageMainView : UIView
 
 @property (nonatomic, weak) id<WXMainPageViewDelegate> delegate;
 

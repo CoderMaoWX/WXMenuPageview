@@ -22,6 +22,8 @@
 #define KScreenWidth    [UIScreen mainScreen].bounds.size.width
 #define kRandomColor    [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:1.0]
 
+#define kRandomColor_A(Alpha)    [UIColor colorWithRed:(arc4random()%255)/255.0 green:(arc4random()%255)/255.0 blue:(arc4random()%255)/255.0 alpha:(Alpha)]
+
 
 
 #endif /* Header_h */
