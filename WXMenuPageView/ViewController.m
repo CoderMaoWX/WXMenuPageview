@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "WXPageListView.h"
 #import "Header.h"
+#import "MJRefresh.h"
 
 #import "WXPageMainView.h"
 
@@ -31,6 +32,17 @@
     if (!_menuPageView) {
         _menuPageView = [[WXPageMainView alloc] initWithFrame:self.view.bounds];
         _menuPageView.delegate = self;
+        
+        __weak ViewController *weakSelf = self;
+        _menuPageView.headerRefreshingBlock = ^(void){
+            
+            [weakSelf.menuPageView convertHeadRefreshView];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                NSLog(@"ViewController===头部刷新完毕");
+                [weakSelf.menuPageView endHeaderRefreshing];
+            });
+        };
     }
     return _menuPageView;
 }

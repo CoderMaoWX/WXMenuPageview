@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WXPageHeaderView : UIView
 
+@property (nonatomic, strong, readonly) UIView *headerRefreshView;
+
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 
 @property (nonatomic, copy) void (^touchMenuBlock)(NSInteger);

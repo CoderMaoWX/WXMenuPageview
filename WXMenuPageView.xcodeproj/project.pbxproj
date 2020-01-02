@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A378DFB427CDD4B2E6D7F5A8 /* libPods-WXMenuPageView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 385C65E5EA3CDB455340B484 /* libPods-WXMenuPageView.a */; };
 		A3A0DF5223BCFA4600118AED /* WXPageMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0DF5123BCFA4600118AED /* WXPageMainView.m */; };
 		A3A0E81023B8CD2C00F5527B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E80F23B8CD2C00F5527B /* AppDelegate.m */; };
 		A3A0E81623B8CD2C00F5527B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3A0E81523B8CD2C00F5527B /* ViewController.m */; };
@@ -20,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		385C65E5EA3CDB455340B484 /* libPods-WXMenuPageView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WXMenuPageView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E7C9D3DF4FBF041E47A13AD /* Pods-WXMenuPageView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXMenuPageView.debug.xcconfig"; path = "Target Support Files/Pods-WXMenuPageView/Pods-WXMenuPageView.debug.xcconfig"; sourceTree = "<group>"; };
 		A3A0DF5023BCFA4600118AED /* WXPageMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXPageMainView.h; sourceTree = "<group>"; };
 		A3A0DF5123BCFA4600118AED /* WXPageMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXPageMainView.m; sourceTree = "<group>"; };
 		A3A0E80B23B8CD2C00F5527B /* WXMenuPageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WXMenuPageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +42,7 @@
 		A3DEA12C23B8F99A005A4EC6 /* WXPageListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXPageListView.m; sourceTree = "<group>"; };
 		A3DEA13123B902DE005A4EC6 /* SceneDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
 		A3DEA13223B902DE005A4EC6 /* SceneDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		E64153A79BC9BDA7FDE1CCD8 /* Pods-WXMenuPageView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXMenuPageView.release.xcconfig"; path = "Target Support Files/Pods-WXMenuPageView/Pods-WXMenuPageView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,17 +50,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A378DFB427CDD4B2E6D7F5A8 /* libPods-WXMenuPageView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AFF14FE6E6A8D13B3D98801 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				385C65E5EA3CDB455340B484 /* libPods-WXMenuPageView.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7BEA1946AD2117DA99F86385 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8E7C9D3DF4FBF041E47A13AD /* Pods-WXMenuPageView.debug.xcconfig */,
+				E64153A79BC9BDA7FDE1CCD8 /* Pods-WXMenuPageView.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		A3A0E80223B8CD2C00F5527B = {
 			isa = PBXGroup;
 			children = (
 				A3A0E80D23B8CD2C00F5527B /* WXMenuPageView */,
 				A3A0E80C23B8CD2C00F5527B /* Products */,
+				7BEA1946AD2117DA99F86385 /* Pods */,
+				0AFF14FE6E6A8D13B3D98801 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,9 +125,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3A0E82423B8CD2F00F5527B /* Build configuration list for PBXNativeTarget "WXMenuPageView" */;
 			buildPhases = (
+				AD6A82C9633FD4F74439857A /* [CP] Check Pods Manifest.lock */,
 				A3A0E80723B8CD2C00F5527B /* Sources */,
 				A3A0E80823B8CD2C00F5527B /* Frameworks */,
 				A3A0E80923B8CD2C00F5527B /* Resources */,
+				DF36604B07C5C3C042A077E0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -157,6 +184,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AD6A82C9633FD4F74439857A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WXMenuPageView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DF36604B07C5C3C042A077E0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WXMenuPageView/Pods-WXMenuPageView-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WXMenuPageView/Pods-WXMenuPageView-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WXMenuPageView/Pods-WXMenuPageView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A3A0E80723B8CD2C00F5527B /* Sources */ = {
@@ -307,6 +376,7 @@
 		};
 		A3A0E82523B8CD2F00F5527B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8E7C9D3DF4FBF041E47A13AD /* Pods-WXMenuPageView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -325,6 +395,7 @@
 		};
 		A3A0E82623B8CD2F00F5527B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E64153A79BC9BDA7FDE1CCD8 /* Pods-WXMenuPageView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

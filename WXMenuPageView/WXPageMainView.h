@@ -29,5 +29,11 @@
 
 @property (nonatomic, weak) id<WXMainPageViewDelegate> delegate;
 
+@property (nonatomic, copy) void (^headerRefreshingBlock)(void);
+
+- (void)endHeaderRefreshing;
+
+- (void)convertHeadRefreshView;
+
 @end
 

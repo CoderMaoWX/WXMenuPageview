@@ -9,12 +9,13 @@
 #import "WXPageMainView.h"
 #import "WXPageHeaderView.h"
 #import "WXPageListView.h"
+#import "MJRefresh.h"
 #import "Header.h"
 
 @interface WXPageMainView ()<UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) WXPageHeaderView   *headerView;
 @property (nonatomic, strong) UICollectionView   *collectionView;
-@property (nonatomic, strong) UIScrollView       *touchScrollView;
+@property (nonatomic, weak) UIScrollView         *touchScrollView;
 @property (nonatomic, assign) BOOL               hasStickyMenu;
 @end
 
@@ -138,12 +139,51 @@
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:(UICollectionViewScrollPositionLeft) animated:YES];
 }
 
+- (void)addSubScrollViewHdeadRefersh:(UIScrollView *)scrollView {
+    if (self.headerRefreshingBlock && !scrollView.mj_header) {
+        
+        scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:self.headerRefreshingBlock];
+        
+        scrollView.mj_header.ignoredScrollViewContentInsetTop = scrollView.contentInset.top;
+    }
+}
+
+- (void)endHeaderRefreshing {
+    if (self.touchScrollView) {
+        [self.touchScrollView.mj_header endRefreshing];
+        self.touchScrollView.mj_header.hidden = NO;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            self.touchScrollView.mj_header.hidden = NO;
+            CGRect refreshRect = self.touchScrollView.mj_header.frame;
+            refreshRect.origin.y = - refreshRect.size.height;
+            self.touchScrollView.mj_header.frame = refreshRect;
+            self.headerView.headerRefreshView.hidden = YES;
+        });
+    }
+}
+
+- (void)convertHeadRefreshView {
+    UIView *refreshView = self.touchScrollView.mj_header;
+    if (refreshView) {
+        CGRect refreshRect = refreshView.frame;
+        refreshRect.origin.y = - refreshRect.size.height;
+        NSLog(@"refreshView====%@", refreshView);
+        refreshView.frame = refreshRect;
+        self.headerView.headerRefreshView.frame = refreshRect;
+        self.headerView.headerRefreshView.hidden = NO;
+        [self.headerView addSubview:refreshView];
+    }
+}
+
 - (void(^)(UIScrollView *))listViewDidScroll {
     __weak WXPageMainView *weakSelf = self;
     CGFloat menuMinY = kHeaderHeight - kMenuKeight;
     
     return ^(UIScrollView * scrollView) {
         weakSelf.touchScrollView = scrollView;
+        
+        [self addSubScrollViewHdeadRefersh:scrollView];
         
         CGFloat offsetY = scrollView.contentOffset.y;
         CGFloat toOffsetY = -(kHeaderHeight + offsetY);
@@ -187,9 +227,9 @@
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
         _collectionView.bounces = NO;
-        _collectionView.showsVerticalScrollIndicator = NO;
-        _collectionView.showsHorizontalScrollIndicator = YES;
         _collectionView.alwaysBounceHorizontal = NO;
+        _collectionView.showsVerticalScrollIndicator = NO;
+        _collectionView.showsHorizontalScrollIndicator = NO;
         [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
     }
     return _collectionView;

@@ -8,6 +8,7 @@
 
 #import "WXPageListView.h"
 #import "Header.h"
+#import "MJRefresh.h"
 
 //static NSInteger kColumnCount = 3;
 
@@ -18,15 +19,6 @@
 @end
 
 @implementation WXPageListView
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        self.kColumnCount = 3;
-        [self initSubView];
-    }
-    return self;
-}
 
 - (instancetype)initWithFrame:(CGRect)frame columnCount:(NSInteger)column {
     self = [super initWithFrame:frame];
@@ -51,10 +43,6 @@
     collectionView.contentInset = UIEdgeInsetsMake(kHeaderHeight, 0, offsetBottom, 0);
 }
 
-- (void)listViewDidScroll:(void(^)(UIScrollView *))didScrollBlock {
-    self.listViewDidScroll = didScrollBlock;
-}
-
 #pragma mark - <UICollectionViewDataSource>
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
@@ -76,6 +64,7 @@
                   layout:(UICollectionViewLayout*)collectionViewLayout
   sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.kColumnCount == 0) { self.kColumnCount = 3; }
     CGFloat size = (KScreenWidth - 10 * (self.kColumnCount + 1) ) / self.kColumnCount;
     return CGSizeMake(size, size * 1.2);
 }
@@ -91,6 +80,12 @@
     if (self.listViewDidScroll) {
         self.listViewDidScroll(scrollView);
     }
+}
+
+#pragma mark - <WXPageListViewDelegate>
+
+- (void)listViewDidScroll:(void(^)(UIScrollView *))didScrollBlock {
+    self.listViewDidScroll = didScrollBlock;
 }
 
 #pragma mark - <InitSubView>
