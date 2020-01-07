@@ -25,6 +25,7 @@
     if (self) {
         self.kColumnCount = column;
         [self initSubView];
+        [self addNotifycation];
     }
     return self;
 }
@@ -32,6 +33,17 @@
 - (void)initSubView {
     self.backgroundColor = [UIColor whiteColor];
     [self addSubview:self.collectionView];
+}
+
+- (void)addNotifycation {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endRefreshAction) name:@"kEndRefreshNotification" object:nil];
+}
+
+- (void)endRefreshAction {
+    if (self.collectionView.mj_header) {
+        [self.collectionView.mj_header endRefreshing];
+        self.collectionView.mj_header.ignoredScrollViewContentInsetTop = 0;
+    }
 }
 
 - (void)configMainHeight:(UICollectionView *)collectionView {

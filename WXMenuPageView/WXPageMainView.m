@@ -16,7 +16,9 @@
 @property (nonatomic, strong) WXPageHeaderView   *headerView;
 @property (nonatomic, strong) UICollectionView   *collectionView;
 @property (nonatomic, weak) UIScrollView         *touchScrollView;
+@property (nonatomic, weak) UIScrollView         *firstScrollView;
 @property (nonatomic, assign) BOOL               hasStickyMenu;
+@property (nonatomic, assign) BOOL               hasAddRefreshKit;
 @end
 
 @implementation WXPageMainView
@@ -139,43 +141,6 @@
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:(UICollectionViewScrollPositionLeft) animated:YES];
 }
 
-- (void)addSubScrollViewHdeadRefersh:(UIScrollView *)scrollView {
-    if (self.headerRefreshingBlock && !scrollView.mj_header) {
-        
-        scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:self.headerRefreshingBlock];
-        
-        scrollView.mj_header.ignoredScrollViewContentInsetTop = scrollView.contentInset.top;
-    }
-}
-
-- (void)endHeaderRefreshing {
-    if (self.touchScrollView) {
-        [self.touchScrollView.mj_header endRefreshing];
-        self.touchScrollView.mj_header.hidden = NO;
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            self.touchScrollView.mj_header.hidden = NO;
-            CGRect refreshRect = self.touchScrollView.mj_header.frame;
-            refreshRect.origin.y = - refreshRect.size.height;
-            self.touchScrollView.mj_header.frame = refreshRect;
-            self.headerView.headerRefreshView.hidden = YES;
-        });
-    }
-}
-
-- (void)convertHeadRefreshView {
-    UIView *refreshView = self.touchScrollView.mj_header;
-    if (refreshView) {
-        CGRect refreshRect = refreshView.frame;
-        refreshRect.origin.y = - refreshRect.size.height;
-        NSLog(@"refreshView====%@", refreshView);
-        refreshView.frame = refreshRect;
-        self.headerView.headerRefreshView.frame = refreshRect;
-        self.headerView.headerRefreshView.hidden = NO;
-        [self.headerView addSubview:refreshView];
-    }
-}
-
 - (void(^)(UIScrollView *))listViewDidScroll {
     __weak WXPageMainView *weakSelf = self;
     CGFloat menuMinY = kHeaderHeight - kMenuKeight;
@@ -196,6 +161,27 @@
         scrollView.showsVerticalScrollIndicator = (toOffsetY <= -menuMinY);
         //scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(kMenuKeight, 0, 0, 0);
     };
+}
+
+- (void)addSubScrollViewHdeadRefersh:(UIScrollView *)scrollView {
+    if (!scrollView.mj_header && self.headerRefreshingBlock) {
+        
+        scrollView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:self.headerRefreshingBlock];
+        
+        scrollView.mj_header.ignoredScrollViewContentInsetTop = scrollView.contentInset.top;
+    }
+    if (!self.hasAddRefreshKit) {
+        self.hasAddRefreshKit = YES;
+        UIView *refreshHeader = scrollView.mj_header;
+        refreshHeader.frame = (CGRect){CGPointZero, refreshHeader.bounds.size};
+        self.headerView.refreshView.frame = refreshHeader.frame;
+        [self.headerView.refreshView addSubview:refreshHeader];
+        self.headerView.refreshView.hidden = NO;
+    }
+}
+
+- (void)endHeaderRefreshing {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kEndRefreshNotification" object:nil];
 }
 
 #pragma mark - <InitSubView>

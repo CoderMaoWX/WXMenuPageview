@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WXPageHeaderView : UIView
 
-@property (nonatomic, strong, readonly) UIView *headerRefreshView;
+@property (nonatomic, strong, readonly) UIView *refreshView;
 
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 

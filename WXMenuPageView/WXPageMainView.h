@@ -33,7 +33,5 @@
 
 - (void)endHeaderRefreshing;
 
-- (void)convertHeadRefreshView;
-
 @end
 

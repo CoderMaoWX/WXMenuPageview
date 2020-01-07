@@ -10,7 +10,7 @@
 #import "Header.h"
 
 @interface WXPageHeaderView ()<UITableViewDelegate, UITableViewDataSource>
-@property (nonatomic, strong) UIView            *headerRefreshView;
+@property (nonatomic, strong) UIView            *refreshView;
 @property (nonatomic, strong) UITableView       *tableView;
 @property (nonatomic, strong) UIImageView       *headerImageView;
 @property (nonatomic, strong) UIButton          *tmpMenuBtn;
@@ -24,7 +24,7 @@
     if (self) {
 //        [self addSubview:self.tableView];
         
-        [self addSubview:self.headerRefreshView];
+        [self addSubview:self.refreshView];
         [self addSubview:self.headerImageView];
         self.tmpMenuBtn = [self createButton:0];
         self.tmpMenuBtn.selected = YES;
@@ -66,14 +66,14 @@
     NSLog(@"didSelectRowAtIndexPath==%ld", indexPath.row);
 }
 
-- (UIView *)headerRefreshView {
-    if (!_headerRefreshView) {
-        CGRect rect = CGRectMake(0, -80, KScreenWidth, 80);
-        _headerRefreshView = [[UIView alloc] initWithFrame:rect];        
-        _headerRefreshView.backgroundColor = [UIColor whiteColor];
-        _headerRefreshView.hidden = YES;
+- (UIView *)refreshView {
+    if (!_refreshView) {
+        CGRect rect = CGRectMake(0, -0, KScreenWidth, 54);
+        _refreshView = [[UIView alloc] initWithFrame:rect];
+        _refreshView.backgroundColor = [UIColor grayColor];
+        _refreshView.hidden = YES;
     }
-    return _headerRefreshView;
+    return _refreshView;
 }
 
 - (UITableView *)tableView {
